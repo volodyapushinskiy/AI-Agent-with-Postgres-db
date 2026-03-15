@@ -5,7 +5,7 @@
 ## 🚀 Запуск online (Render)
 
 ### 1) Backend (FastAPI + LangGraph)
-Backend уже развернут на Render и доступен по адресу:
+Backend уже развернут на Render с помощью Docker Dekstop и доступен по адресу:
 
 - **https://aiagent-backend-latest.onrender.com**
 
