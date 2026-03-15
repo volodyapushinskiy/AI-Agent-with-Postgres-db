@@ -57,15 +57,15 @@ AI agent имеет клиент-серверную архитектуру:
 - Ключ API ChatGroq
 - Ключ API Tavily
 
-### Установка
+### Установка и запуск (локально)
 
-1. **Клонировать репозиторий**
-   "`bash
+Клонируй репозиторий и перейди в папку проекта:
+
+`bash`
 git clone https://github.com/volodyapushinskiy/AI-Agent.git
-   cd AI-Agent
+cd AI-Agent
 
 2. **Настроить сервер**
-   ``bash
 cd server
    python -m venv venv
    исходный код venv\Scripts\activate
@@ -77,25 +77,25 @@ cd server
    TAVILY_API_KEY=ваш_tavily_api_key
    
 4. **Настройка клиента**
-```bash
+`bash`
 cd ../Client
 npm install
 
 ### Запуск приложения
 
 1. **Запустите сервер**
-   ```bash
+   `bash`
    cd Server
    uvicorn app:app --reload
 
 2. **Запустите клиент**
-   ```bash
+   `bash`
    cd Client
-   npm run dev
+   npm run dev (npm.cmd run dev)
 
 3. **Откройте браузер и перейдите по адресу http://localhost:3000**   
 
-## 🔍 Как это работает
+### 🔍 Как это работает
 
 1. **Пользователь отправляет сообщение** через интерфейс чата
 2. **Сервер обрабатывает сообщение** с помощью ChatGroq
