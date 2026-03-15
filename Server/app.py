@@ -100,11 +100,11 @@ app = FastAPI()
 # Add CORS middleware with settings that match frontend requirements
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  
-    allow_credentials=True,
+    allow_origins=["https://aiagent-frontend-latest.onrender.com"],  
+    allow_credentials=False,
     allow_methods=["*"],  
     allow_headers=["*"], 
-    expose_headers=["Content-Type"], 
+    # expose_headers=["Content-Type"], 
 )
 
 def serialise_ai_message_chunk(chunk): 
@@ -198,4 +198,3 @@ async def chat_stream(message: str, checkpoint_id: Optional[str] = Query(None)):
         media_type="text/event-stream"
     )
 
-# SSE - server-sent events 

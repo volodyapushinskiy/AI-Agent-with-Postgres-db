@@ -71,10 +71,10 @@ const Home = () => {
         ]);
 
         // Create URL with checkpoint ID if it exists
-        let url = `https://aiagent-latest-693w.onrender.com/chat_stream/${encodeURIComponent(userInput)}`;
-        if (checkpointId) {
-          url += `?checkpoint_id=${encodeURIComponent(checkpointId)}`;
-        }
+        const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL || "https://aiagent-backend-latest.onrender.com";
+        let url = `${apiBase}/chat_stream/${encodeURIComponent(userInput)}`;
+        if (checkpointId) url += `?checkpoint_id=${encodeURIComponent(checkpointId)}`;
+        
 
         // Connect to SSE endpoint using EventSource
         const eventSource = new EventSource(url);

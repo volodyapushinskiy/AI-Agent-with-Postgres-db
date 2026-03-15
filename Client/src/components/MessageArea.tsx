@@ -1,5 +1,24 @@
 import React from 'react';
 
+type SearchInfo = {
+  stages: string[];
+  query?: string;
+  urls?: unknown[] | string;
+  error?: string;
+};
+
+type ChatMessage = {
+  id: string | number;
+  isUser: boolean;
+  isLoading?: boolean;
+  content?: string;
+  searchInfo?: SearchInfo;
+};
+
+type MessageAreaProps = {
+  messages: ChatMessage[];
+};
+
 const PremiumTypingAnimation = () => {
     return (
         <div className="flex items-center">
@@ -15,8 +34,11 @@ const PremiumTypingAnimation = () => {
     );
 };
 
-const SearchStages = ({ searchInfo }) => {
-    if (!searchInfo || !searchInfo.stages || searchInfo.stages.length === 0) return null;
+type SearchStagesProps = {
+  searchInfo?: any;
+};
+
+const SearchStages = ({ searchInfo }: SearchStagesProps) => {
 
     return (
         <div className="mb-3 mt-1 relative pl-4">
@@ -63,7 +85,7 @@ const SearchStages = ({ searchInfo }) => {
                                 <div className="pl-2 space-y-1">
                                     <div className="flex flex-wrap gap-2">
                                         {Array.isArray(searchInfo.urls) ? (
-                                            searchInfo.urls.map((url, index) => (
+                                            searchInfo.urls.map((url: unknown, index: number) => (
                                                 <div key={index} className="bg-gray-100 text-xs px-3 py-1.5 rounded border border-gray-200 truncate max-w-[200px] transition-all duration-200 hover:bg-gray-50">
                                                     {typeof url === 'string' ? url : JSON.stringify(url).substring(0, 30)}
                                                 </div>
@@ -105,11 +127,12 @@ const SearchStages = ({ searchInfo }) => {
     );
 };
 
-const MessageArea = ({ messages }) => {
+
+const MessageArea = ({ messages }: MessageAreaProps) => {
     return (
         <div className="flex-grow overflow-y-auto bg-[#FCFCF8] border-b border-gray-100" style={{ minHeight: 0 }}>
             <div className="max-w-4xl mx-auto p-6">
-                {messages.map((message) => (
+                {messages.map((message: ChatMessage, index: number) => (
                     <div key={message.id} className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} mb-5`}>
                         <div className="flex flex-col max-w-md">
                             {/* Search Status Display - Now ABOVE the message */}
