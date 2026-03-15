@@ -61,7 +61,7 @@ AI agent имеет клиент-серверную архитектуру:
 
 Клонируй репозиторий и перейди в папку проекта:
 
-`bash`
+```bash```
 git clone https://github.com/volodyapushinskiy/AI-Agent.git
 cd AI-Agent
 
@@ -77,19 +77,19 @@ cd server
    TAVILY_API_KEY=ваш_tavily_api_key
    
 4. **Настройка клиента**
-`bash`
+```bash```
 cd ../Client
 npm install
 
 ### Запуск приложения
 
 1. **Запустите сервер**
-   `bash`
+  ```bash```
    cd Server
    uvicorn app:app --reload
 
 2. **Запустите клиент**
-   `bash`
+   ```bash```
    cd Client
    npm run dev (npm.cmd run dev)
 
