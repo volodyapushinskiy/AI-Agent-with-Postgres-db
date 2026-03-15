@@ -61,15 +61,16 @@ AI agent имеет клиент-серверную архитектуру:
 
 Клонируй репозиторий и перейди в папку проекта:
 
-```bash```
+```bash
 git clone https://github.com/volodyapushinskiy/AI-Agent.git
 cd AI-Agent
-
+```
 2. **Настроить сервер**
-cd server
+```cd server
    python -m venv venv
    исходный код venv\Scripts\activate
    pip install -r requirements.txt
+```
 
 3. **Настройте переменные среды**  
    Создайте файл `.env` в каталоге сервера.:
@@ -77,22 +78,22 @@ cd server
    TAVILY_API_KEY=ваш_tavily_api_key
    
 4. **Настройка клиента**
-```bash```
+```bash
 cd ../Client
 npm install
-
+```
 ### Запуск приложения
 
 1. **Запустите сервер**
-  ```bash```
+  ```bash
    cd Server
    uvicorn app:app --reload
-
+```
 2. **Запустите клиент**
-   ```bash```
+```bash
    cd Client
    npm run dev (npm.cmd run dev)
-
+```
 3. **Откройте браузер и перейдите по адресу http://localhost:3000**   
 
 ### 🔍 Как это работает
