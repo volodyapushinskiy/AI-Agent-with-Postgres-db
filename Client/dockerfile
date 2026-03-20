@@ -1,30 +1,22 @@
 # syntax=docker/dockerfile:1
 
-# -------------------------
-# deps: install dependencies
-# -------------------------
 FROM node:20-alpine AS deps
 WORKDIR /app
 
 COPY package.json package-lock.json ./
 RUN npm ci
 
-# -------------------------
-# build: build Next.js app
-# -------------------------
 FROM node:20-alpine AS build
 WORKDIR /app
 
 ARG NEXT_PUBLIC_API_BASE_URL
 ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
+ENV NODE_ENV=production
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
-# -------------------------
-# runner: run production server
-# -------------------------
 FROM node:20-alpine AS runner
 WORKDIR /app
 
@@ -32,9 +24,6 @@ ENV NODE_ENV=production
 
 COPY --from=build /app ./
 
-# Документация: локально обычно 3000, на Render будет $PORT
 EXPOSE 3000
 
-# Твой package.json уже умеет: next start -H 0.0.0.0 -p $PORT
-# Добавляем fallback PORT=3000 для локального запуска
 CMD ["sh", "-c", "PORT=${PORT:-3000} npm run start"]
